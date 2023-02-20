@@ -1,4 +1,4 @@
--- examples for your init.lua
+-- nvim-tree.lua
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
@@ -37,6 +37,5 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
-
 
 vim.api.nvim_set_keymap("n", "<C-t>", ":NvimTreeToggle<cr>" ,{silent = true, noremap = true})

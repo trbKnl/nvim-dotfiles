@@ -1,8 +1,8 @@
+-- Set complete options in plain vim
 vim.cmd [[
 set completeopt=menu,menuone,noselect
 ]]
 
--------------------------------------------------
 -- Set up nvim-cmp.
 local cmp = require'cmp'
 
@@ -36,9 +36,9 @@ cmp.setup({
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer' },
-    })
+        }, {
+          { name = 'buffer' },
+        })
     })
 
     -- Set configuration for specific filetype.

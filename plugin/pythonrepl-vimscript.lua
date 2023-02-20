@@ -1,3 +1,5 @@
+-- My own send lines to Repl implementation in vimscript 
+
 vim.cmd [[
 " Global variables
 let g:seen_blank = 0
