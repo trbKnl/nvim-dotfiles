@@ -112,6 +112,13 @@ function SendLineTermBuf()
     execute 'normal! j0'
 endfunction
 
+function SendStringTermBuf(string)
+    " Send string to terminal buffer
+
+    call chansend(g:channel_id, a:string."\r")
+endfunction
+
+
 nmap <leader>s :call StartPython()<CR>
 nmap <leader>r :call StartR()<CR>
 nmap <leader>e :call StartIEx()<CR>
