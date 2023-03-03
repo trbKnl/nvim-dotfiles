@@ -7,44 +7,20 @@ let g:seen_blank = 0
 " Global options
 set splitright
 
-function StartPython()
+
+function StartRepl(cmd)
     " Opens new split, starts the interpreter in a nvim terminal and store the channel id
     " Store the buffer id, so it can be killed later
     " Move cursor to end of line for auto scroll
     " Move back to previous split
-    vs enew | let g:channel_id = termopen('python') 
-    let g:buf_nr = bufnr('%')
-    execute 'normal! G'
-    wincmd p
-endfunction
-
-function StartR()
-    vs enew | let g:channel_id = termopen('R') 
-    let g:buf_nr = bufnr('%')
-    execute 'normal! G'
-    wincmd p
-endfunction
-
-function StartIEx()
-    vs enew | let g:channel_id = termopen('iex') 
-    let g:buf_nr = bufnr('%')
-    execute 'normal! G'
-    wincmd p
-endfunction
-
-function StartNode()
-    " Opens new split, starts the interpreter in a nvim terminal and store the channel id
-    " Store the buffer id, so it can be killed later
-    " Move cursor to end of line for auto scroll
-    " Move back to previous split
-    vs enew | let g:channel_id = termopen('node') 
+    vs enew | let g:channel_id = termopen(a:cmd) 
     let g:buf_nr = bufnr('%')
     execute 'normal! G'
     wincmd p
 endfunction
 
 function Kill()
-    " Kill last opened buffer with StartPython
+    " Kill last opened buffer with StartRepl
     execute "bd! " . g:buf_nr
 endfunction
 
@@ -84,6 +60,7 @@ function SendLinesTermBuf()
     call chansend(g:channel_id, output)
 endfunction
 
+
 function SendLineTermBuf()
     " Grabs current line with getline, then process it, and send it to 
     " to the running the terminal. Move to the next line.
@@ -119,10 +96,9 @@ function SendStringTermBuf(string)
 endfunction
 
 
-nmap <leader>s :call StartPython()<CR>
-nmap <leader>r :call StartR()<CR>
-nmap <leader>e :call StartIEx()<CR>
-nmap <leader>n :call StartNode()<CR>
+nmap <leader>s :call StartRepl('python')<CR>
+nmap <leader>r :call StartRepl('R')<CR>
+nmap <leader>n :call StartRepl('node')<CR>
 nmap <leader>k :call Kill()<CR>
 nmap <C-Space> :call SendLineTermBuf()<CR>
 vmap <C-Space> :<c-u>call SendLinesTermBuf()<CR>
