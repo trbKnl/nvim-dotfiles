@@ -11,5 +11,12 @@ local map = vim.api.nvim_set_keymap
 
 -- Send "end" to terminal buffer
 map("n", "<C-E>", ":call SendStringTermBuf('end')<CR>", silent)
-map("n", "<leader>e", ":call StartRepl('iex')<CR>", silent)
-map("n", "<leader>m", ":call StartRepl('iex -S mix')<CR>", silent)
+
+-- Start iex repl
+map("n", "<leader>es", ":call StartRepl('iex')<CR>", silent)
+
+-- Start mix repl
+map("n", "<leader>ms", ":call StartRepl('iex -S mix')<CR>", silent)
+
+-- Format the current buffer, with mix format
+map("n", "<leader>ef", ":!mix format %<CR><CR>", silent)
