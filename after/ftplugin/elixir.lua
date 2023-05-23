@@ -12,6 +12,9 @@ local map = vim.api.nvim_set_keymap
 -- Send "end" to terminal buffer
 map("n", "<C-E>", ":call SendStringTermBuf('end')<CR>", silent)
 
+-- Send "recompile" to terminal buffer
+map("n", "<leader>er", ":call SendStringTermBuf('recompile')<CR>", silent)
+
 -- Start iex repl
 map("n", "<leader>es", ":call StartRepl('iex')<CR>", silent)
 
