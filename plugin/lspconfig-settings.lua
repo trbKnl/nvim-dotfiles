@@ -44,3 +44,23 @@ require('lspconfig')['pyright'].setup{
 require'lspconfig'.elixirls.setup{
     cmd = { "/home/turbo/.config/elixirls/language_server.sh" };
 }
+require'lspconfig'.tsserver.setup{
+}
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- CHANGE BY ME 
+    underline = false,
+    -- Enable virtual text, override spacing to 4
+    virtual_text = {
+      spacing = 4,
+    },
+    -- Use a function to dynamically turn signs off
+    -- and on, using buffer local variables
+    signs = function(namespace, bufnr)
+      return vim.b[bufnr].show_signs == true
+    end,
+    -- Disable a feature
+    update_in_insert = false,
+  }
+)

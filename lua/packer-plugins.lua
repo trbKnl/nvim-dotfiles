@@ -8,14 +8,11 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use 'tpope/vim-surround'
+    use 'tpope/vim-repeat'
     use {
-        'phaazon/hop.nvim',
-        branch = 'v2', -- optional but strongly recommended
-        config = function()
-            -- you can configure Hop the way you like here; see :h hop-config
-            require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-        end
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
     }
     use {
         'nvim-tree/nvim-tree.lua',
