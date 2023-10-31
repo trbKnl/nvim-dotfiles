@@ -38,3 +38,4 @@ map("n", "<C-P>", ":bprevious<CR>", silent)
 
 -- Exit insert mode with esc in terminal window
 map("t", "<ESC>", "<C-\\><C-N>", silent)
+

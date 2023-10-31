@@ -1,7 +1,7 @@
 return require('packer').startup(function(use)
   -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-    use 'gruvbox-community/gruvbox'
+    use "ellisonleao/gruvbox.nvim"
     use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
