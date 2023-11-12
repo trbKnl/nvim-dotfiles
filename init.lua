@@ -55,6 +55,7 @@ opt.expandtab = true
 -- Keybindings
 local silent = { silent = true, noremap = true }
 
+-- Normal mode
 -- Easier split navigation (ctrl+direction)
 local map = vim.api.nvim_set_keymap
 map("n", "<C-J>", "<C-W><C-J>", silent)
@@ -78,6 +79,11 @@ map("n", "<Leader>b", ":ls<CR>:b<Space>", silent)
 map("n", "<C-N>", ":bnext<CR>", silent)
 map("n", "<C-P>", ":bprevious<CR>", silent)
 
+-- Visual and select mode
+-- Yank lines into primary register
+map("v", "<leader>y", "\"*y", silent)
+
+-- Terminal mode
 -- Exit insert mode with esc in terminal window
 map("t", "<ESC>", "<C-\\><C-N>", silent)
 
