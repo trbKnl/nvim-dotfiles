@@ -83,6 +83,9 @@ map("n", "<C-P>", ":bprevious<CR>", silent)
 -- Yank lines into primary register
 map("v", "<leader>y", "\"*y", silent)
 
+-- Left mouse release triggers copy to primary clipboard
+map("v", "<LeftRelease>", "\"*y", silent)
+
 -- Terminal mode
 -- Exit insert mode with esc in terminal window
 map("t", "<ESC>", "<C-\\><C-N>", silent)
