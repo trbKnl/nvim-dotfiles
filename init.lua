@@ -41,6 +41,14 @@ require("lazy").setup({
         dependencies = { 
             'nvim-lua/plenary.nvim' 
         }
+    },
+    {
+      "cuducos/yaml.nvim",
+      ft = { "yaml" }, -- optional
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-telescope/telescope.nvim", -- optional
+      },
     }
 })
 
@@ -80,11 +88,11 @@ map("n", "<C-N>", ":bnext<CR>", silent)
 map("n", "<C-P>", ":bprevious<CR>", silent)
 
 -- Visual and select mode
--- Yank lines into primary register
-map("v", "<leader>y", "\"*y", silent)
+-- Yank lines into secondary clipboard
+map("v", "<leader>y", "\"+y", silent)
 
--- Left mouse release triggers copy to primary clipboard
-map("v", "<LeftRelease>", "\"*y", silent)
+-- Left mouse release triggers copy to secondary clipboard
+map("v", "<LeftRelease>", "\"+y", silent)
 
 -- Terminal mode
 -- Exit insert mode with esc in terminal window

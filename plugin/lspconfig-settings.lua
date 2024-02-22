@@ -37,15 +37,18 @@ local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
-require('lspconfig')['pyright'].setup{
+
+require'lspconfig'.pyright.setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+
 require'lspconfig'.elixirls.setup{
     cmd = { "/home/turbo/.config/elixirls/language_server.sh" };
 }
 require'lspconfig'.tsserver.setup{
 }
+
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
