@@ -15,8 +15,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    "ellisonleao/gruvbox.nvim",
-    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",           -- part of lsp setup
+    "williamboman/mason-lspconfig.nvim", -- part of lsp setup
+    "neovim/nvim-lspconfig",             -- part of lsp setup
+    'hrsh7th/vim-vsnip',
+    'hrsh7th/vim-vsnip-integ',
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
@@ -49,6 +52,11 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         "nvim-telescope/telescope.nvim", -- optional
       },
+    },
+    { 
+      "catppuccin/nvim",
+      name = "catppuccin",
+      priority = 1000 
     }
 })
 
