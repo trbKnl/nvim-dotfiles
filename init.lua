@@ -69,40 +69,46 @@ opt.softtabstop = 4
 opt.expandtab = true
 
 -- Keybindings
-local silent = { silent = true, noremap = true }
+local opts = { silent = true, noremap = true }
 
 -- Normal mode
 -- Easier split navigation (ctrl+direction)
 local map = vim.api.nvim_set_keymap
-map("n", "<C-J>", "<C-W><C-J>", silent)
-map("n", "<C-K>", "<C-W><C-K>", silent)
-map("n", "<C-L>", "<C-W><C-L>", silent)
-map("n", "<C-H>", "<C-W><C-H>", silent)
+map("n", "<C-J>", "<C-W><C-J>", opts)
+map("n", "<C-K>", "<C-W><C-K>", opts)
+map("n", "<C-L>", "<C-W><C-L>", opts)
+map("n", "<C-H>", "<C-W><C-H>", opts)
 
--- Remap splits
-map("n", "<C-W>h", "<C-W>s", silent)
+-- Easier split navigation (ctrl+direction)
+map("n", "<C-S-J>", "<C-W><S-J>", opts)
+map("n", "<C-S-K>", "<C-W><S-K>", opts)
+map("n", "<C-S-L>", "<C-W><S-L>", opts)
+map("n", "<C-S-H>", "<C-W><S-H>", opts)
+
+-- Add extra mapping for splits
+map("n", "<Leader>h", ":split<CR>", opts)
+map("n", "<Leader>v", ":vsplit<CR>", opts)
 
 -- Easier resizing of splits
-map("n", "<C-UP>", "<C-W>+", silent)
-map("n", "<C-DOWN>", "<C-W>-", silent)
-map("n", "<C-LEFT>", "<C-W><", silent)
-map("n", "<C-RIGHT>", "<C-W>>", silent)
-
--- List all available buffers 
-map("n", "<Leader>b", ":ls<CR>:b<Space>", silent)
+map("n", "<C-UP>", "<C-W>+", opts)
+map("n", "<C-DOWN>", "<C-W>-", opts)
+map("n", "<C-LEFT>", "<C-W><", opts)
+map("n", "<C-RIGHT>", "<C-W>>", opts)
 
 -- Buffer cycle next and prev
-map("n", "<C-N>", ":bnext<CR>", silent)
-map("n", "<C-P>", ":bprevious<CR>", silent)
+map("n", "<C-N>", ":bnext<CR>", opts)
+map("n", "<C-P>", ":bprevious<CR>", opts)
+
+-- List all available buffers 
+map("n", "<Leader>b", ":ls<CR>:b<Space>", opts)
 
 -- Visual and select mode
 -- Yank lines into secondary clipboard
-map("v", "<leader>y", "\"+y", silent)
+map("v", "<leader>y", "\"+y", opts)
 
 -- Left mouse release triggers copy to secondary clipboard
-map("v", "<LeftRelease>", "\"+y", silent)
+map("v", "<LeftRelease>", "\"+y", opts)
 
 -- Terminal mode
 -- Exit insert mode with esc in terminal window
-map("t", "<ESC>", "<C-\\><C-N>", silent)
-
+map("t", "<ESC>", "<C-\\><C-N>", opts)

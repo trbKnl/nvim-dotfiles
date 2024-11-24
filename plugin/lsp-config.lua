@@ -2,15 +2,19 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 -- mason-lspconfig
--- checkout how to install language servers
+-- checkout docs how to install language servers
+-- h: lspconfig-all
 
 -- python: pyright
 require'lspconfig'.pyright.setup{}
 
-
+-- elixir 
 require'lspconfig'.lexical.setup{
    cmd = {"/home/turbo/.local/share/nvim/mason/bin/lexical"}
 }
+
+-- typescript
+require'lspconfig'.ts_ls.setup{}
 
 -- elixir: elixir-ls
 --capabilities = require("cmp_nvim_lsp").default_capabilities()
