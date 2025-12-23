@@ -117,8 +117,26 @@ vim.lsp.config('vtsls', {
 
 vim.lsp.enable({'vtsls', 'vue_ls'})
 
+--  LSP diagnostic options  (how errors are shown etc.)
 
--- Vim options
+vim.diagnostic.config({
+  virtual_text = true,        -- inline text on the line
+  signs = true,               -- gutter symbols
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
+
+vim.keymap.set("n", "<leader>e", function()
+  vim.diagnostic.open_float(nil, {
+    scope = "cursor",
+    focusable = false,
+    border = "rounded",
+  })
+end, { silent = true })
+
+
+-- All other Vim options
 local opt = vim.opt
 opt.number = true
 opt.tabstop = 4
@@ -170,10 +188,6 @@ map("v", "<LeftRelease>", "\"+y", opts)
 -- Terminal mode
 -- Exit insert mode with esc in terminal window
 map("t", "<ESC>", "<C-\\><C-N>", opts)
-
--- Open diagnostic, when using LSP
-map("n", "<leader>e", "vim.diagnostic.open_float", opts)
-
 
 -- Start zen mode
 map("n", "<leader>z", ":ZenMode<CR>", opts)
