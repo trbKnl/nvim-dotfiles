@@ -1,4 +1,5 @@
 vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
 -- initialze lazy.nvim (plugin manager)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -25,6 +26,7 @@ require("lazy").setup({
    "hrsh7th/cmp-path",
    "hrsh7th/cmp-cmdline",
    "hrsh7th/nvim-cmp",
+   "folke/zen-mode.nvim",
    {
       "nvim-treesitter/nvim-treesitter", 
       build = ":TSUpdate"
@@ -39,23 +41,32 @@ require("lazy").setup({
    },
    {
       'nvim-telescope/telescope.nvim', tag = '0.1.8',
-      dependencies = { 
-         'nvim-lua/plenary.nvim' 
+      dependencies = {
+         'nvim-lua/plenary.nvim'
       }
    },
    { 
       'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make' 
+      build = 'make'
    },
    { 
      "catppuccin/nvim",
      name = "catppuccin",
-     priority = 1000 
+     priority = 1000
    },
    { 
-     'echasnovski/mini.nvim', 
-     version = '*' 
+     'echasnovski/mini.nvim',
+     version = '*'
    },
+   {
+     "lervag/vimtex",
+     lazy = false,     -- we don't want to lazy load VimTeX
+     -- tag = "v2.15", -- uncomment to pin to a specific release
+     init = function()
+       -- VimTeX configuration goes here, e.g.
+       vim.g.vimtex_view_method = "zathura"
+     end
+   }
 })
 
 -- Vim options
@@ -110,3 +121,10 @@ map("v", "<LeftRelease>", "\"+y", opts)
 -- Terminal mode
 -- Exit insert mode with esc in terminal window
 map("t", "<ESC>", "<C-\\><C-N>", opts)
+
+-- Open diagnostic, when using LSP
+map("n", "<leader>e", "vim.diagnostic.open_float", opts)
+
+
+-- Start zen mode
+map("n", "<leader>z", ":ZenMode<CR>", opts)

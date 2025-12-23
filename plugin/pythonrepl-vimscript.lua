@@ -100,7 +100,7 @@ nmap <leader>s :call StartRepl('python')<CR>
 nmap <leader>r :call StartRepl('R')<CR>
 nmap <leader>n :call StartRepl('node')<CR>
 nmap <leader>t :call StartRepl('ts-node')<CR>
-nmap <leader>l :call StartRepl('lua')<CR>
+"nmap <leader>l :call StartRepl('lua')<CR>
 nmap <leader>em :call StartRepl('iex -S mix')<CR>
 nmap <leader>k :call Kill()<CR>
 nmap <C-Space> :call SendLineTermBuf()<CR>

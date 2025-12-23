@@ -12,9 +12,16 @@ require'lspconfig'.pyright.setup{}
 require'lspconfig'.lexical.setup{
    cmd = {"/home/turbo/.local/share/nvim/mason/bin/lexical"}
 }
-
--- typescript
-require'lspconfig'.ts_ls.setup{}
+-- Vue
+require("lspconfig").volar.setup({
+  filetypes = {
+    "vue",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+  },
+})
 
 -- elixir: elixir-ls
 --capabilities = require("cmp_nvim_lsp").default_capabilities()
