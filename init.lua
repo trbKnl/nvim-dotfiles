@@ -13,12 +13,10 @@ if not vim.loop.fs_stat(lazypath) then
    lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-   "williamboman/mason.nvim",         -- part of lsp setup
-   "williamboman/mason-lspconfig.nvim", -- part of lsp setup
-   "neovim/nvim-lspconfig",          -- part of lsp setup
    'hrsh7th/vim-vsnip',
    'hrsh7th/vim-vsnip-integ',
    "hrsh7th/cmp-nvim-lsp",
@@ -27,8 +25,26 @@ require("lazy").setup({
    "hrsh7th/cmp-cmdline",
    "hrsh7th/nvim-cmp",
    "folke/zen-mode.nvim",
+   { -- USE PURELY THIS PLUGIN TO INSTALL LANGUAGE SERVERS 
+     -- :LspInfo 
+     -- :LspInstall
+       "mason-org/mason-lspconfig.nvim",
+       opts = {
+         automatic_enable = false,
+         ensure_installed = {
+           "ts_ls",
+           "vue_ls",
+           "pyright",
+           -- add more here
+         },
+      },
+       dependencies = {
+           { "mason-org/mason.nvim", opts = {} },
+           "neovim/nvim-lspconfig",
+       },
+   },
    {
-      "nvim-treesitter/nvim-treesitter", 
+      "nvim-treesitter/nvim-treesitter",
       build = ":TSUpdate"
    },
    {
@@ -45,16 +61,16 @@ require("lazy").setup({
          'nvim-lua/plenary.nvim'
       }
    },
-   { 
+   {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make'
    },
-   { 
+   {
      "catppuccin/nvim",
      name = "catppuccin",
      priority = 1000
    },
-   { 
+   {
      'echasnovski/mini.nvim',
      version = '*'
    },
@@ -68,6 +84,39 @@ require("lazy").setup({
      end
    }
 })
+
+-- Configure LSP clients
+-- h :lspconfig-all
+
+-- Set default root markers for all clients
+-- marks the beginning of a project, which is the folder which contains .git, can be overridden per language server
+vim.lsp.config('*', {
+  root_markers = { '.git' },
+})
+
+local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+local vue_plugin = {
+ name = '@vue/typescript-plugin',
+ location = vue_language_server_path,
+ languages = { 'vue' },
+ configNamespace = 'typescript',
+}
+
+vim.lsp.config('vtsls', {
+ settings = {
+   vtsls = {
+     tsserver = {
+       globalPlugins = {
+         vue_plugin,
+       },
+     },
+   },
+ },
+ filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+})
+
+vim.lsp.enable({'vtsls', 'vue_ls'})
+
 
 -- Vim options
 local opt = vim.opt
